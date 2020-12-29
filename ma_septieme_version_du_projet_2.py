@@ -134,7 +134,7 @@ for i, cat in enumerate(getCategory(2)[2:53]):
     for size in range(len(getName())):
         first_file.write(getName()[size]+',   ')
         first_file.write('price: '+ getPrice()[size] + ',  ')
-        first_file.write('upc: ' + getUpcAndAvailability(1)[size:::]+ ',  ')
+        first_file.write('upc: ' + getUpcAndAvailability(1)[size]+ ',  ')
         first_file.write('number available: ' + getUpcAndAvailability(2)[size]+',  ')
         first_file.write('product_page_url: '+ getProductsUrls(1)[size]+',  ')
         first_file.write('review_rating: '+ getRating()[size]+ ',  ')
