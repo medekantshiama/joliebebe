@@ -144,6 +144,6 @@ for i, cat in enumerate(getCategory(2)[2:53]):
     for url, name in zip(getImageUrl(), getName()):
         response = requests.get(url)
         good_name = "".join([char for char in name if char.isalnum()])
-        image_name = 'C:/Users/Random/PycharmProjects/pythonProject2/joliebebe-scrape1/result.zip/image' + good_name + '.jpg'
+        image_name = 'C:/Users/Random/PycharmProjects/pythonProject2/joliebebe-scrape1/result.zip/image_of_categorie_'+cat + good_name + '.jpg'
         with open(image_name, 'wb') as image_file:
              image_file.write(response.content)

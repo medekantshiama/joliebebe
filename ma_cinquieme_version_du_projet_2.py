@@ -1,13 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 
+
+from io import BytesIO
+
 myChoise = input("Entrez le numero d une categorie entre 1 et 50")
 myChoise = int(myChoise)
 
 choiseCategorie = input("entrez une categorie: ")
 choiseCategorie = choiseCategorie.lower()
 
-imageFile = open('image_of_categorie_'+choiseCategorie+'.jpg', 'w')
+imageFile = open('image_of_categorie_'+choiseCategorie+'.img', 'w')
 
 first_file = open('product_features'+choiseCategorie+'.csv', 'w')
 first_file.write(
@@ -74,7 +77,7 @@ for article in info_article:
     print(' nom du livre: ' + str(name) + '\n', 'son prix: ' + str(price), '\n',
               'le lien pour acceder au produit: ', '\n' + str(link_product), '\n', 'son code upc: ' + str(upc),'\n',
                       'Sa categorie: ' + str(category), '\n', 'Le nombre en stock: ' + str(availability), '\n',
-                      '  Sa cotation en etoile: ' + str(rating), '\n', 'le lien pour l image: ', '\n',image_url[:25] + image_url[27:])
+                      '  Sa cotation en etoile: ' + str(rating), '\n', 'le lien pour l image: ', '\n',image_url[:25] + image_url[36:])
     find_description = page_product.findAll("p")
     description = str(find_description[3])
     print('sa description: ', description)
@@ -89,8 +92,6 @@ for article in info_article:
     first_file.write(description + ',____')
     first_file.write('\n')
 
-    imageResponse = requests.get(image_url[:25] + image_url[27:])
-    imageSoup = BeautifulSoup(imageResponse,"html.parser")
-    for imageScript in imageSoup:
-        print(imageScript)
-        imageFile.write(imageScript)
+    imageResponse = requests.get(image_url[:25] + image_url[36:])
+
+    imageFile.write(imageResponse.content)
