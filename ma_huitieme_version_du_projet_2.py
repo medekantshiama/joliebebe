@@ -11,7 +11,7 @@ from PIL import Image
 from io import BytesIO
 
 
-with open('result.zip/product_characteristics.csv','w', encoding='utf-8') as first_file:
+with open('result.zip/product_characteristics.csv','w', encoding='utf:-8') as first_file:
     first_file.write(
         'product_page_url  , upc, title,price_excluding_tax, number available ,  category   ,review_rating,image_url,  product_description\n')
     def getCategory(n):
@@ -26,6 +26,7 @@ with open('result.zip/product_characteristics.csv','w', encoding='utf-8') as fir
             for very_kind in true_category.findAll('a'):
                 list_kind_category.append(very_kind['href'])
                 for very in very_kind:
+
                     my_category.append(str(very))
         if n == 1:
             return list_kind_category
@@ -129,10 +130,10 @@ with open('result.zip/product_characteristics.csv','w', encoding='utf-8') as fir
                     descriptions.append(str(book_description[3]))
             return descriptions
         file = 'result.zip/product_characteristics_of_caterorie_'+ str(cat.strip()) +'.csv'
-        first_file = open(file,'w')
+        first_file = open(file,'w',encoding='utf-8')
         first_file.write(
             'product_page_url  , upc, title,price_excluding_tax, number available ,  category   ,review_rating,image_url,  product_description\n')
-        for size in range(len(getName())):
+        for size in range(len(getDescription())):
             first_file.write(getName()[size]+',   ')
             first_file.write('price: '+ getPrice()[size] + ',  ')
             first_file.write('upc: ' + getUpcAndAvailability(1)[size]+ ',  ')
